@@ -1,0 +1,1 @@
+./Debug/Letters.cpp.o ./Debug/StackElement.cpp.o ./Debug/Res.cpp.o ./Debug/resEatProcess.cpp.o ./Debug/Stack.cpp.o ./Debug/Restaurant.cpp.o ./Debug/Entrance.cpp.o ./Debug/Waiter.cpp.o ./Debug/Queue.cpp.o ./Debug/Kitchen.cpp.o ./Debug/Client.cpp.o ./Debug/resExit.cpp.o ./Debug/QueueElement.cpp.o ./Debug/randomTable.cpp.o ./Debug/clientGenerator.cpp.o   

@@ -1,0 +1,110 @@
+POINTER IMPLEMENTATION
+
+class generalTree
+	private root: ^node
+	public node parent (n:^node)
+	public node leftmost_child (n:node)
+	public node right_sibling (n:node)
+	public label label (n:node)
+	public void create (t1, t2: ^node, l:label)
+	public node root()
+	public void makenull()  {Dispose all elements in postorder}
+endclass
+
+public void generalTree::create (lefttree, righttree:^node, l:label) --> O(1)
+	allocate (root)
+	root^.element:=l  1
+	root^.leftmostchild:=lefttree  2
+	lefttree^.rightsibling:=righttree  3
+	root^.rightsibling:=null
+endmethod	
+
+
+BINARY TREES: each node, at most has two children
+
+node=record
+	element: label
+	leftchild: ^node
+	rightchild: ^node
+	parent: ^node {optional}
+endrecord
+btree: ^node
+label: elementtype
+
+public void btree::create(lefttree, righttree: ^node, l:label)
+	allocate (root)		
+	root^.element:=l  1
+	root^.leftchild:=lefttree  2
+	root^.rightchild:=righttree  3
+	root^.parent:=null  4
+	lefttree^.parent:=root  5
+	righttree^.parent:=root  6
+endmethod
+
+
+BINARY SEARCH TREES: nodes are labeled with elements of a set (or dictionary)
+
+node=record
+	element:label
+	leftchildren: ^node
+	rightchildren: ^node
+endrecord
+
+bst: ^node
+label:elementtype
+
+class bst
+	private root: ^node
+	public boolean search(x:label,n:^node)
+	public void insert(x:label,n:^node)
+	public void delete(x:label,n:^node)
+	private label deletemin(n:^node)
+endclass
+
+public boolean bst::search(x:label,n:^node)
+	if n=null return false
+	if n^.element=x return true
+	if x<n^.element return search(x,n^.leftchild)
+	if x>n^.element return search(x,n^.rightchild)
+endmethod
+
+public void bst::insert(x:label,n:^node)  --> O(n)
+	if n=null
+		allocate(n)
+		n^.element:=x
+		n^.leftchild:=null
+		n^.rightchild:=null
+	else if x<n^.element
+		insert(x,n^.leftchild)
+	else if x>n^.element
+		insert(x,n^.rightchild)
+	{if n^.element=x do nothing}
+	endif
+endmethod
+
+public label bst::deletemin(n:^node)
+{returns and removes smallest element from a BST}
+	var aux: label
+	if n^.leftchild=null {n is smallest element}
+		aux:=n^.element
+		n:=n^.rightchild
+		return aux
+	else
+		return deletemin(n^.leftchild)
+endmethod
+
+public void bst::delete(x:label,n:^node)  --> O(n)
+	if n!=null
+		if x<n^.element delete(x,n^.leftchild)
+		else if x>n^.element delete(x,n^.rightchild)
+		{if we search here x=n^.element}
+	else if n^.leftchild=null and n^.rightchild=null {is leaf}
+		dispose (n)
+	else if n^.leftchild=null {only right child}
+		n:=n^.rightchild
+	else if n^.rightchild=null {only left child}
+		n:=n^.leftchild
+	else {both children}
+		n^.element:=deletemin(n^.rightchild)
+	endif
+endmethod
