@@ -1,0 +1,1 @@
+./Debug/Serie.cpp.o ./Debug/hashTable.cpp.o ./Debug/userOptions.cpp.o ./Debug/userMenu.cpp.o ./Debug/StackElement.cpp.o ./Debug/elemManager.cpp.o ./Debug/Stack.cpp.o ./Debug/ListElement.cpp.o ./Debug/main.cpp.o ./Debug/List.cpp.o ./Debug/hashTableElement.cpp.o   
